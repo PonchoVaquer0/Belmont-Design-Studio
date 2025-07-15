@@ -2,24 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cotizador Video Branding - Belmont</title>
-  <link href="https://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <img src="Belmont Logo.svg" alt="Belmont Logo" class="logo" />
     <h1>Cotizador Video Branding</h1>
+
     <form id="cotizadorForm">
-      <label>Objetivo del video</label>
-      <select id="objetivo" required>
+      <label>¿Qué tipo de video necesitas?</label>
+      <select id="tipoVideo" required>
         <option disabled selected>Selecciona</option>
-        <option value="posicionamiento">Posicionamiento de marca</option>
-        <option value="lanzamiento">Lanzamiento</option>
-        <option value="redes">Redes sociales</option>
-        <option value="institucional">Institucional</option>
-        <option value="otro">Otro</option>
+        <option value="grabacion">Grabación</option>
+        <option value="edicion">Edición de video (armado)</option>
+        <option value="motion">Motion graphics</option>
+        <option value="animacion2d">Animación 2D</option>
+        <option value="animacion3d">Animación 3D</option>
       </select>
 
       <label>Plataforma principal donde se publicará</label>
@@ -38,26 +39,11 @@
       <label>Estilo visual</label>
       <select id="estilo" required>
         <option disabled selected>Selecciona</option>
-        <option value="2d">2D minimalista</option>
+        <option value="2dminimalista">2D minimalista</option>
         <option value="3d">3D</option>
         <option value="cinematografico">Cinematográfico</option>
         <option value="dinamico">Dinámico / redes</option>
         <option value="corporativo">Corporativo</option>
-      </select>
-
-      <label>Tipo de grabación</label>
-      <select id="grabacion" required>
-        <option disabled selected>Selecciona</option>
-        <option value="basico">Básico</option>
-        <option value="locacion">Con locación</option>
-        <option value="talento">Con talento / actores</option>
-      </select>
-
-      <label>¿Requiere animación o motion graphics?</label>
-      <select id="animacion" required>
-        <option disabled selected>Selecciona</option>
-        <option value="no">No</option>
-        <option value="si">Sí</option>
       </select>
 
       <label>¿Tienes guion o necesitas apoyo creativo?</label>
@@ -66,13 +52,6 @@
         <option value="guion">Ya tengo guion</option>
         <option value="idea">Tengo una idea base</option>
         <option value="apoyo">Necesito apoyo completo</option>
-      </select>
-
-      <label>¿Tienes locaciones definidas?</label>
-      <select id="locaciones" required>
-        <option disabled selected>Selecciona</option>
-        <option value="si">Sí</option>
-        <option value="no">No, necesito que me propongan</option>
       </select>
 
       <label>¿Tienes alguna referencia visual?</label>
@@ -113,36 +92,93 @@
       </select>
 
       <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
-      <div id="resultado"></div>
     </form>
+
+    <div id="resultado"></div>
   </div>
 
   <script>
     function calcularPresupuesto() {
       const base = 3000;
+      const tipo = document.getElementById('tipoVideo').value;
       const duracion = parseInt(document.getElementById('duracion').value);
-      const tipo = document.getElementById('grabacion').value;
-      const animacion = document.getElementById('animacion').value;
-      const guion = document.getElementById('guion').value;
       const estilo = document.getElementById('estilo').value;
+      const guion = document.getElementById('guion').value;
+      const plataforma = document.getElementById('plataforma').value;
+      const referencia = document.getElementById('referencia').value;
       const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
+      const entrega = document.getElementById('entrega').value;
+      const materiales = document.getElementById('materiales').value;
 
       let extra = 0;
-      if (duracion > 15) extra += (duracion - 15) * 100;
-      if (tipo === 'locacion') extra += 800;
-      if (tipo === 'talento') extra += 1500;
-      if (animacion === 'si') extra += 1000;
-      if (guion === 'apoyo') extra += 1000;
-      if (estilo === '3d') extra += 2500;
+
+      switch(tipo) {
+        case 'grabacion':
+          extra += 0;
+          if(duracion > 15) extra += (duracion - 15) * 120;
+          if(estilo === '3d') extra += 1500;
+          if(guion === 'apoyo') extra += 1000;
+          break;
+        case 'edicion':
+          extra += 1000;
+          if(duracion > 15) extra += (duracion - 15) * 80;
+          if(estilo === '3d') extra += 1200;
+          if(guion === 'apoyo') extra += 800;
+          break;
+        case 'motion':
+          extra += 2000;
+          if(duracion > 15) extra += (duracion - 15) * 150;
+          if(estilo === '3d') extra += 2500;
+          if(guion === 'apoyo') extra += 1200;
+          break;
+        case 'animacion2d':
+          extra += 3000;
+          if(duracion > 15) extra += (duracion - 15) * 180;
+          if(guion === 'apoyo') extra += 1500;
+          break;
+        case 'animacion3d':
+          extra += 5000;
+          if(duracion > 15) extra += (duracion - 15) * 250;
+          if(guion === 'apoyo') extra += 2000;
+          break;
+      }
 
       const total = base + extra;
       const resultado = document.getElementById('resultado');
+      let htmlResultado = '';
 
-      if (total > presupuestoMax) {
-        resultado.innerHTML = `<p style='color:#ff6666'>El estimado es de <strong>$${total.toLocaleString('es-MX')}</strong> MXN, lo cual excede tu presupuesto. Considera ajustar opciones.</p>`;
+      if(total > presupuestoMax) {
+        htmlResultado = `<p style="color:#ff6666;">El estimado es de <strong>$${total.toLocaleString('es-MX')}</strong> MXN, excede tu presupuesto. Ajusta duración, estilo o apoyo creativo.</p>`;
       } else {
-        resultado.innerHTML = `<p style='color:#66ffcc'>Tu presupuesto es viable. Estimación: <strong>$${total.toLocaleString('es-MX')}</strong> MXN.</p>`;
+        htmlResultado = `<p style="color:#66ffcc;">Tu presupuesto es viable. Estimación: <strong>$${total.toLocaleString('es-MX')}</strong> MXN.</p>`;
       }
+
+      htmlResultado += `<button id="whatsappBtn" style="margin-top:20px; padding:10px 20px; background:#25D366; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Contactarme por WhatsApp</button>`;
+
+      resultado.innerHTML = htmlResultado;
+
+      document.getElementById('whatsappBtn').onclick = function() {
+        enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, referencia, presupuestoMax, entrega, materiales, total);
+      }
+    }
+
+    function enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, referencia, presupuesto, entrega, materiales, total) {
+      const telefono = '5219982358809';
+      const msg = `Hola, quiero cotizar un video de branding:\n` +
+        `- Tipo de video: ${tipo}\n` +
+        `- Plataforma: ${plataforma}\n` +
+        `- Duración: ${duracion} segundos\n` +
+        `- Estilo visual: ${estilo}\n` +
+        `- Guion: ${guion}\n` +
+        `- Referencia visual: ${referencia}\n` +
+        `- Presupuesto estimado: $${presupuesto.toLocaleString('es-MX')} MXN\n` +
+        `- Fecha ideal de entrega: ${entrega}\n` +
+        `- Materiales disponibles: ${materiales}\n` +
+        `- Estimación de costo final: $${total.toLocaleString('es-MX')} MXN\n` +
+        `Por favor, contáctame para iniciar el proyecto.`;
+
+      const url = `https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
