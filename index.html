@@ -1,254 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cotizador de Video de Branding - Belmont Studio Design</title>
-<style>
-  /* Fondo negro con degradado y transparencias */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 20px auto;
-    max-width: 700px;
-    background: linear-gradient(135deg, #000000cc 0%, #1a1a1acc 100%);
-    color: #ddd;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 30px #000;
-  }
-
-  /* Logo */
-  #logo {
-    display: block;
-    margin: 0 auto 25px auto;
-    max-width: 180px;
-    filter: drop-shadow(0 0 5px #0af);
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #00aaff;
-    text-shadow: 0 0 8px #00aaff;
-  }
-
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: 600;
-    color: #bbb;
-  }
-
-  select, input[type="number"], input[type="text"], textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 6px;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 1.5px solid #444;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #eee;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
-  }
-  select:focus, input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
-    outline: none;
-    border-color: #00aaff;
-    box-shadow: 0 0 8px #00aaff;
-    background-color: rgba(0, 0, 0, 0.85);
-  }
-
-  button {
-    margin-top: 25px;
-    padding: 12px 30px;
-    font-size: 1.1em;
-    cursor: pointer;
-    background: linear-gradient(90deg, #0077cc, #00aaff);
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    box-shadow: 0 0 10px #00aaff;
-    transition: background 0.3s ease;
-  }
-  button:hover {
-    background: linear-gradient(90deg, #005fa3, #0088cc);
-  }
-
-  #resultado {
-    margin-top: 30px;
-    font-weight: 700;
-    font-size: 1.4em;
-    color: #00ddff;
-    text-align: center;
-    text-shadow: 0 0 10px #00ddff;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizador Video Branding — Belmont</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="https://fonts.cdnfonts.com/css/sofia-pro" as="style" />
 </head>
 <body>
+  <div class="container">
+    <img src="Belmont Logo.svg" alt="Belmont Logo" class="logo" />
+    <h1>Cotizador Video Branding</h1>
 
-<img id="logo" src="Belmont Logo.svg" alt="Belmont Logo" />
+    <form id="formularioCotizacion">
+      <div class="form-group">
+        <label>Objetivo del video</label>
+        <select id="objetivo" required>
+          <option disabled selected>Selecciona</option>
+          <option value="posicionamiento">Posicionamiento</option>
+          <option value="lanzamiento">Lanzamiento</option>
+          <option value="redes">Redes sociales</option>
+          <option value="institucional">Institucional</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
 
-<h2>Cuestionario para Cotización de Video de Branding</h2>
+      <div class="form-group">
+        <label>Duración estimada (segundos)</label>
+        <input type="number" id="duracion" min="1" value="15" required />
+      </div>
 
-<form id="formularioCotizacion">
-  
-  <label>1. ¿Cuál es el objetivo principal del video?</label>
-  <select id="objetivo" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="posicionamiento">Posicionamiento de marca</option>
-    <option value="lanzamiento">Lanzamiento de producto/servicio</option>
-    <option value="redes">Redes sociales</option>
-    <option value="institucional">Video institucional</option>
-    <option value="otro">Otro</option>
-  </select>
+      <div class="form-group">
+        <label>Tipo de grabación</label>
+        <select id="grabacion" required>
+          <option disabled selected>Selecciona</option>
+          <option value="basico">Básico</option>
+          <option value="locacion">Locación</option>
+          <option value="talento">Talento</option>
+        </select>
+      </div>
 
-  <label>2. ¿Dónde se publicará o utilizará el video?</label>
-  <select id="publicacion" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="instagram">Instagram</option>
-    <option value="youtube">YouTube</option>
-    <option value="web">Sitio web</option>
-    <option value="presentacion">Presentaciones internas</option>
-    <option value="otro">Otro</option>
-  </select>
+      <div class="form-group">
+        <label>¿Requiere animación o motion graphics?</label>
+        <select id="animacion" required>
+          <option disabled selected>Selecciona</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+        </select>
+      </div>
 
-  <label>3. Duración estimada del video (segundos)</label>
-  <input type="number" id="duracion" min="1" value="15" required />
+      <div class="form-group">
+        <label>¿Necesitas apoyo creativo?</label>
+        <select id="guion" required>
+          <option disabled selected>Selecciona</option>
+          <option value="guion">Ya tengo guion</option>
+          <option value="idea">Solo tengo la idea</option>
+          <option value="apoyo">Necesito apoyo completo</option>
+        </select>
+      </div>
 
-  <label>4. ¿Cuentas con un guion, idea base o necesitas apoyo creativo?</label>
-  <select id="guion" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="guion">Guion completo</option>
-    <option value="idea">Idea base</option>
-    <option value="apoyo">Necesito apoyo creativo desde cero</option>
-  </select>
+      <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
+    </form>
 
-  <label>5. ¿Qué tipo de grabaciones se requieren?</label>
-  <select id="grabacion" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="basico">Básico</option>
-    <option value="locacion">Locación</option>
-    <option value="talento">Talento</option>
-  </select>
+    <div id="resultado"></div>
+  </div>
 
-  <label>6. ¿Cuentas con locaciones específicas o necesitas que las propongamos?</label>
-  <select id="locaciones" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="si">Sí, locaciones específicas</option>
-    <option value="no">No, necesito propuestas</option>
-    <option value="noaplica">No aplica</option>
-  </select>
+  <script>
+    function calcularPresupuesto() {
+      const base = 3000;
+      const duracion = parseInt(document.getElementById('duracion').value);
+      const tipo = document.getElementById('grabacion').value;
+      const animacion = document.getElementById('animacion').value;
+      const guion = document.getElementById('guion').value;
 
-  <label>7. ¿Se requiere animación, motion graphics o textos animados?</label>
-  <select id="animacion" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="si">Sí</option>
-    <option value="no">No</option>
-    <option value="ns">No estoy seguro</option>
-  </select>
+      let extra = 0;
+      if (duracion > 15) extra += (duracion - 15) * 100;
+      if (tipo === 'locacion') extra += 500;
+      if (tipo === 'talento') extra += 1000;
+      if (animacion === 'si') extra += 1000;
+      if (guion === 'apoyo') extra += 1000;
 
-  <label>8. ¿Qué estilo visual estás buscando?</label>
-  <select id="estilo" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="cinematografico">Cinematográfico</option>
-    <option value="documental">Documental</option>
-    <option value="dinamico">Dinámico</option>
-    <option value="corporativo">Corporativo</option>
-    <option value="otro">Otro</option>
-  </select>
-
-  <label>9. ¿Tienes una referencia visual o algún video guía?</label>
-  <select id="referencia" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="si">Sí</option>
-    <option value="no">No</option>
-  </select>
-
-  <label>10. ¿Cuál es tu presupuesto estimado o rango disponible?</label>
-  <select id="presupuesto" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="menor10k">Menos de $10,000 MXN</option>
-    <option value="10k30k">$10,000 - $30,000 MXN</option>
-    <option value="30k50k">$30,000 - $50,000 MXN</option>
-    <option value="mayor50k">Más de $50,000 MXN</option>
-    <option value="nod definido">No definido aún</option>
-  </select>
-
-  <label>11. ¿Cuál es tu fecha ideal de entrega?</label>
-  <select id="fechaEntrega" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="menor1sem">Menos de 1 semana</option>
-    <option value="1a2sem">1 a 2 semanas</option>
-    <option value="2a4sem">2 a 4 semanas</option>
-    <option value="mayor4sem">Más de 4 semanas</option>
-    <option value="no definido">No definido aún</option>
-  </select>
-
-  <label>12. ¿Qué elementos ya tienes disponibles?</label>
-  <select id="elementos" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="logo">Logotipo</option>
-    <option value="branding">Manual de marca/branding</option>
-    <option value="musica">Música</option>
-    <option value="guion">Guion</option>
-    <option value="voz">Voz en off</option>
-    <option value="ninguno">Ninguno</option>
-  </select>
-
-  <label>13. ¿Quién tomará las decisiones finales?</label>
-  <select id="decisiones" required>
-    <option value="" disabled selected>Selecciona una opción</option>
-    <option value="yo">Yo solo</option>
-    <option value="equipo">Equipo de trabajo</option>
-    <option value="no definido">No definido aún</option>
-  </select>
-
-  <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
-</form>
-
-<div id="resultado"></div>
-
-<script>
-function calcularPresupuesto() {
-  const base = 3000;
-  const duracion = parseInt(document.getElementById('duracion').value);
-  const tipo = document.getElementById('grabacion').value;
-  const animacion = document.getElementById('animacion').value;
-  const guion = document.getElementById('guion').value;
-
-  let costoExtra = 0;
-
-  if (duracion > 15) {
-    costoExtra += (duracion - 15) * 100;
-  }
-
-  if (tipo === 'locacion') {
-    costoExtra += 500;
-  } else if (tipo === 'talento') {
-    costoExtra += 1000;
-  }
-
-  if (animacion === 'si') {
-    costoExtra += 1000;
-  }
-
-  if (guion === 'apoyo') {
-    costoExtra += 1000;
-  }
-
-  const total = base + costoExtra;
-
-  // Validar formulario antes de mostrar resultado
-  const form = document.getElementById('formularioCotizacion');
-  if (!form.checkValidity()) {
-    alert('Por favor, completa todas las preguntas antes de calcular el presupuesto.');
-    return;
-  }
-
-  document.getElementById('resultado').textContent =
-    `Presupuesto estimado: $${total.toLocaleString('es-MX')} MXN`;
-}
-</script>
-
+      const total = base + extra;
+      document.getElementById('resultado').textContent =
+        `Presupuesto estimado: $${total.toLocaleString('es-MX')} MXN`;
+    }
+  </script>
 </body>
 </html>
