@@ -73,14 +73,14 @@
         <option value="mas">Más de 1 mes</option>
       </select>
 
-      <label>¿Qué materiales ya tienes? (selección múltiple)</label>
-      <select id="materiales" multiple size="6">
-        <option value="logotipo">Logotipo</option>
-        <option value="branding">Manual de marca</option>
-        <option value="musica">Música</option>
-        <option value="voz">Voz en off</option>
-        <option value="ninguno">Ninguno</option>
-      </select>
+     <label>¿Qué materiales ya tienes?</label>
+<div id="materiales" style="margin-top: 10px;">
+  <label><input type="checkbox" value="Logotipo" /> Logotipo</label><br />
+  <label><input type="checkbox" value="Manual de marca" /> Manual de marca</label><br />
+  <label><input type="checkbox" value="Música" /> Música</label><br />
+  <label><input type="checkbox" value="Voz en off" /> Voz en off</label><br />
+  <label><input type="checkbox" value="Ninguno" /> Ninguno</label>
+</div>
 
       <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
     </form>
@@ -99,8 +99,9 @@
       const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
       const entrega = document.getElementById('entrega').value;
 
-      const materialesSelect = document.getElementById('materiales');
-      const materiales = Array.from(materialesSelect.selectedOptions).map(opt => opt.value).join(', ');
+     const materiales = Array.from(document.querySelectorAll('#materiales input[type="checkbox"]:checked'))
+  .map(el => el.value)
+  .join(', ');
 
       let extra = 0;
 
