@@ -1,38 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Belmont Design Studio</title>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cotizador de Video Branding + Formulario</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; max-width: 700px; }
+  h2 { margin-bottom: 10px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  select, input[type="number"], input[type="text"], textarea {
+    width: 100%; padding: 7px; margin-top: 5px; box-sizing: border-box;
+  }
+  button { margin-top: 20px; padding: 10px 20px; font-size: 1em; cursor: pointer; }
+  #resultado { margin-top: 25px; font-weight: bold; font-size: 1.3em; color: #004080; }
+</style>
+</head>
+<body>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<h2>Cuestionario para Cotización de Video de Branding</h2>
 
-    <!-- Sofia Pro Font from Adobe Fonts -->
-    <link rel="stylesheet" href="https://use.typekit.net/fib8bkh.css">
+<form id="formularioCotizacion">
+  
+  <label>1. ¿Cuál es el objetivo principal del video?</label>
+  <select id="objetivo" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="posicionamiento">Posicionamiento de marca</option>
+    <option value="lanzamiento">Lanzamiento de producto/servicio</option>
+    <option value="redes">Redes sociales</option>
+    <option value="institucional">Video institucional</option>
+    <option value="otro">Otro</option>
+  </select>
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body class="text-white min-h-screen flex flex-col">
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center px-6 py-4">
-      <!-- Menu -->
-      <ul class="flex space-x-8 text-sm font-light tracking-wide">
-        <li><a href="#" class="hover:underline">HOME</a></li>
-        <li><a href="#" class="hover:underline">PROJECTS</a></li>
-        <li><a href="#" class="hover:underline">CONTACT</a></li>
-      </ul>
-    </nav>
+  <label>2. ¿Dónde se publicará o utilizará el video?</label>
+  <select id="publicacion" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="instagram">Instagram</option>
+    <option value="youtube">YouTube</option>
+    <option value="web">Sitio web</option>
+    <option value="presentacion">Presentaciones internas</option>
+    <option value="otro">Otro</option>
+  </select>
 
-    <!-- Hero Section -->
-    <main class="flex-grow flex items-center justify-center">
-      <div class="text-center">
-        <img src="Belmont Logo.svg" alt="Belmont Design Studio" class="mx-auto w-72 mb-4" />
-      </div>
-    </main>
+  <label>3. Duración estimada del video (segundos)</label>
+  <input type="number" id="duracion" min="1" value="15" required />
 
-    <!-- Custom JS -->
-    <script src="script.js" defer></script>
-  </body>
+  <label>4. ¿Cuentas con un guion, idea base o necesitas apoyo creativo?</label>
+  <select id="guion" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="guion">Guion completo</option>
+    <option value="idea">Idea base</option>
+    <option value="apoyo">Necesito apoyo creativo desde cero</option>
+  </select>
+
+  <label>5. ¿Qué tipo de grabaciones se requieren?</label>
+  <select id="grabacion" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="basico">Básico</option>
+    <option value="locacion">Locación</option>
+    <option value="talento">Talento</option>
+  </select>
+
+  <label>6. ¿Cuentas con locaciones específicas o necesitas que las propongamos?</label>
+  <select id="locaciones" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="si">Sí, locaciones específicas</option>
+    <option value="no">No, necesito propuestas</option>
+    <option value="noaplica">No aplica</option>
+  </select>
+
+  <label>7. ¿Se requiere animación, motion graphics o textos animados?</label>
+  <select id="animacion" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="si">Sí</option>
+    <option value="no">No</option>
+    <option value="ns">No estoy seguro</option>
+  </select>
+
+  <label>8. ¿Qué estilo visual estás buscando?</label>
+  <select id="estilo" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="cinematografico">Cinematográfico</option>
+    <option value="documental">Documental</option>
+    <option value="dinamico">Dinámico</option>
+    <option value="corporativo">Corporativo</option>
+    <option value="otro">Otro</option>
+  </select>
+
+  <label>9. ¿Tienes una referencia visual o algún video guía?</label>
+  <select id="referencia" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="si">Sí</option>
+    <option value="no">No</option>
+  </select>
+
+  <label>10. ¿Cuál es tu presupuesto estimado o rango disponible?</label>
+  <select id="presupuesto" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="menor10k">Menos de $10,000 MXN</option>
+    <option value="10k30k">$10,000 - $30,000 MXN</option>
+    <option value="30k50k">$30,000 - $50,000 MXN</option>
+    <option value="mayor50k">Más de $50,000 MXN</option>
+    <option value="nod definido">No definido aún</option>
+  </select>
+
+  <label>11. ¿Cuál es tu fecha ideal de entrega?</label>
+  <select id="fechaEntrega" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="menor1sem">Menos de 1 semana</option>
+    <option value="1a2sem">1 a 2 semanas</option>
+    <option value="2a4sem">2 a 4 semanas</option>
+    <option value="mayor4sem">Más de 4 semanas</option>
+    <option value="no definido">No definido aún</option>
+  </select>
+
+  <label>12. ¿Qué elementos ya tienes disponibles?</label>
+  <select id="elementos" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="logo">Logotipo</option>
+    <option value="branding">Manual de marca/branding</option>
+    <option value="musica">Música</option>
+    <option value="guion">Guion</option>
+    <option value="voz">Voz en off</option>
+    <option value="ninguno">Ninguno</option>
+  </select>
+
+  <label>13. ¿Quién tomará las decisiones finales?</label>
+  <select id="decisiones" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="yo">Yo solo</option>
+    <option value="equipo">Equipo de trabajo</option>
+    <option value="no definido">No definido aún</option>
+  </select>
+
+  <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+function calcularPresupuesto() {
+  const base = 3000;
+  const duracion = parseInt(document.getElementById('duracion').value);
+  const tipo = document.getElementById('grabacion').value;
+  const animacion = document.getElementById('animacion').value;
+  const guion = document.getElementById('guion').value;
+
+  let costoExtra = 0;
+
+  if (duracion > 15) {
+    costoExtra += (duracion - 15) * 100;
+  }
+
+  if (tipo === 'locacion') {
+    costoExtra += 500;
+  } else if (tipo === 'talento') {
+    costoExtra += 1000;
+  }
+
+  if (animacion === 'si') {
+    costoExtra += 1000;
+  }
+
+  if (guion === 'apoyo') {
+    costoExtra += 1000;
+  }
+
+  const total = base + costoExtra;
+
+  // Validar formulario antes de mostrar resultado
+  const form = document.getElementById('formularioCotizacion');
+  if (!form.checkValidity()) {
+    alert('Por favor, completa todas las preguntas antes de calcular el presupuesto.');
+    return;
+  }
+
+  document.getElementById('resultado').textContent =
+    `Presupuesto estimado: $${total.toLocaleString('es-MX')} MXN`;
+}
+</script>
+
+</body>
 </html>
