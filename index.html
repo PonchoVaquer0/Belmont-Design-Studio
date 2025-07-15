@@ -176,6 +176,23 @@
       const url = `https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     }
+document.addEventListener('DOMContentLoaded', () => {
+  const checkboxes = document.querySelectorAll('#materiales input[type="checkbox"]');
+  const chkNinguno = document.getElementById('chkNinguno');
+
+  checkboxes.forEach(chk => {
+    chk.addEventListener('change', () => {
+      if (chk.id === 'chkNinguno' && chk.checked) {
+        // Desmarca todos los demás
+        checkboxes.forEach(c => { if (c !== chk) c.checked = false; });
+      } else if (chk.checked) {
+        // Si se marca otro, desmarca "Ninguno"
+        chkNinguno.checked = false;
+      }
+    });
+  });
+});
+    
   </script>
 </body>
 </html>
