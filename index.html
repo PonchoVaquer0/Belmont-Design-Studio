@@ -73,14 +73,14 @@
         <option value="mas">Más de 1 mes</option>
       </select>
 
-     <label>¿Qué materiales ya tienes?</label>
-<div id="materiales" style="margin-top: 10px;">
-  <label><input type="checkbox" value="Logotipo" /> Logotipo</label><br />
-  <label><input type="checkbox" value="Manual de marca" /> Manual de marca</label><br />
-  <label><input type="checkbox" value="Música" /> Música</label><br />
-  <label><input type="checkbox" value="Voz en off" /> Voz en off</label><br />
-  <label><input type="checkbox" value="Ninguno" /> Ninguno</label>
-</div>
+      <label>¿Qué materiales ya tienes?</label>
+      <div id="materiales" class="checkbox-group" style="margin-top: 10px;">
+        <label><input type="checkbox" value="Logotipo" /> Logotipo</label><br />
+        <label><input type="checkbox" value="Manual de marca" /> Manual de marca</label><br />
+        <label><input type="checkbox" value="Música" /> Música</label><br />
+        <label><input type="checkbox" value="Voz en off" /> Voz en off</label><br />
+        <label><input type="checkbox" value="Ninguno" id="chkNinguno" /> Ninguno</label>
+      </div>
 
       <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
     </form>
@@ -99,9 +99,9 @@
       const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
       const entrega = document.getElementById('entrega').value;
 
-     const materiales = Array.from(document.querySelectorAll('#materiales input[type="checkbox"]:checked'))
-  .map(el => el.value)
-  .join(', ');
+      const materiales = Array.from(document.querySelectorAll('#materiales input[type="checkbox"]:checked'))
+        .map(el => el.value)
+        .join(', ');
 
       let extra = 0;
 
@@ -136,7 +136,7 @@
 
       let total = base + extra;
 
-      // 🔒 Limitar si es menor a 3 minutos
+      // Limitar precio máximo base si duración <= 120 seg
       if (duracion <= 120 && total > 13000) {
         total = 13000;
       }
@@ -159,6 +159,22 @@
       }
     }
 
+    // Lógica para exclusión checkbox "Ninguno"
+    document.addEventListener('DOMContentLoaded', () => {
+      const checkboxes = document.querySelectorAll('#materiales input[type="checkbox"]');
+      const chkNinguno = document.getElementById('chkNinguno');
+
+      checkboxes.forEach(chk => {
+        chk.addEventListener('change', () => {
+          if (chk.id === 'chkNinguno' && chk.checked) {
+            checkboxes.forEach(c => { if (c !== chk) c.checked = false; });
+          } else if (chk.checked) {
+            chkNinguno.checked = false;
+          }
+        });
+      });
+    });
+
     function enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, presupuesto, entrega, materiales, total) {
       const telefono = '5219982358809';
       const msg = `Hola, quiero cotizar un video de branding:\n` +
@@ -176,23 +192,6 @@
       const url = `https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     }
-document.addEventListener('DOMContentLoaded', () => {
-  const checkboxes = document.querySelectorAll('#materiales input[type="checkbox"]');
-  const chkNinguno = document.getElementById('chkNinguno');
-
-  checkboxes.forEach(chk => {
-    chk.addEventListener('change', () => {
-      if (chk.id === 'chkNinguno' && chk.checked) {
-        // Desmarca todos los demás
-        checkboxes.forEach(c => { if (c !== chk) c.checked = false; });
-      } else if (chk.checked) {
-        // Si se marca otro, desmarca "Ninguno"
-        chkNinguno.checked = false;
-      }
-    });
-  });
-});
-    
   </script>
 </body>
 </html>
