@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  max-width: 540px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -23,24 +23,21 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 40px;
   color: #cccccc;
 }
 
-.form-group {
-  margin-bottom: 25px;
-}
-
-label {
+form label {
   display: block;
   font-size: 0.95rem;
-  margin-bottom: 6px;
+  margin: 20px 0 8px;
   color: #b0b0b0;
 }
 
-select, input[type="number"] {
+select,
+input[type="number"] {
   width: 100%;
   padding: 10px 12px;
   font-size: 1rem;
@@ -49,9 +46,11 @@ select, input[type="number"] {
   color: #e0e0e0;
   border-radius: 8px;
   appearance: none;
+  transition: border-color 0.2s;
 }
 
-select:focus, input:focus {
+select:focus,
+input:focus {
   outline: none;
   border-color: #00aaff;
 }
@@ -66,6 +65,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
+  margin-top: 30px;
   transition: background-color 0.2s ease-in-out;
 }
 
@@ -77,5 +77,5 @@ button:hover {
   margin-top: 30px;
   font-size: 1.2rem;
   text-align: center;
-  color: #00aaff;
+  font-weight: 500;
 }
