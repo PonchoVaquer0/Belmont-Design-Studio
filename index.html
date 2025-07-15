@@ -16,7 +16,6 @@
       <label>¿Qué tipo de video necesitas?</label>
       <select id="tipoVideo" required>
         <option disabled selected>Selecciona</option>
-        <option value="grabacion">Grabación</option>
         <option value="edicion">Edición de video (armado)</option>
         <option value="motion">Motion graphics</option>
         <option value="animacion2d">Animación 2D</option>
@@ -54,12 +53,7 @@
         <option value="apoyo">Necesito apoyo completo</option>
       </select>
 
-      <label>¿Tienes alguna referencia visual?</label>
-      <select id="referencia" required>
-        <option disabled selected>Selecciona</option>
-        <option value="si">Sí</option>
-        <option value="no">No</option>
-      </select>
+      <!-- Eliminada referencia visual -->
 
       <label>Presupuesto estimado</label>
       <select id="presupuesto" required>
@@ -74,7 +68,7 @@
       <label>Fecha ideal de entrega</label>
       <select id="entrega" required>
         <option disabled selected>Selecciona</option>
-        <option value="7">Menos de 1 semana</option>
+        <option value="7">Menos de 1 semana (urgente)</option>
         <option value="14">1 a 2 semanas</option>
         <option value="30">2 a 4 semanas</option>
         <option value="mas">Más de 1 mes</option>
@@ -105,7 +99,6 @@
       const estilo = document.getElementById('estilo').value;
       const guion = document.getElementById('guion').value;
       const plataforma = document.getElementById('plataforma').value;
-      const referencia = document.getElementById('referencia').value;
       const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
       const entrega = document.getElementById('entrega').value;
       const materiales = document.getElementById('materiales').value;
@@ -113,14 +106,8 @@
       let extra = 0;
 
       switch(tipo) {
-        case 'grabacion':
-          extra += 0;
-          if(duracion > 15) extra += (duracion - 15) * 120;
-          if(estilo === '3d') extra += 1500;
-          if(guion === 'apoyo') extra += 1000;
-          break;
         case 'edicion':
-          extra += 1000;
+          extra += 0;
           if(duracion > 15) extra += (duracion - 15) * 80;
           if(estilo === '3d') extra += 1200;
           if(guion === 'apoyo') extra += 800;
@@ -143,6 +130,11 @@
           break;
       }
 
+      // Urgencia por entrega menor a 1 semana
+      if(entrega === '7') {
+        extra += 2000; // cargo extra por urgencia
+      }
+
       const total = base + extra;
       const resultado = document.getElementById('resultado');
       let htmlResultado = '';
@@ -158,11 +150,11 @@
       resultado.innerHTML = htmlResultado;
 
       document.getElementById('whatsappBtn').onclick = function() {
-        enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, referencia, presupuestoMax, entrega, materiales, total);
+        enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, presupuestoMax, entrega, materiales, total);
       }
     }
 
-    function enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, referencia, presupuesto, entrega, materiales, total) {
+    function enviarWhatsApp(tipo, plataforma, duracion, estilo, guion, presupuesto, entrega, materiales, total) {
       const telefono = '5219982358809';
       const msg = `Hola, quiero cotizar un video de branding:\n` +
         `- Tipo de video: ${tipo}\n` +
@@ -170,7 +162,6 @@
         `- Duración: ${duracion} segundos\n` +
         `- Estilo visual: ${estilo}\n` +
         `- Guion: ${guion}\n` +
-        `- Referencia visual: ${referencia}\n` +
         `- Presupuesto estimado: $${presupuesto.toLocaleString('es-MX')} MXN\n` +
         `- Fecha ideal de entrega: ${entrega}\n` +
         `- Materiales disponibles: ${materiales}\n` +
