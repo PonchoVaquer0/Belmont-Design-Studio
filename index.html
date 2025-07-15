@@ -2,67 +2,119 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cotizador Video Branding — Belmont</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="https://fonts.cdnfonts.com/css/sofia-pro" as="style" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotizador Video Branding - Belmont</title>
+  <link href="https://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <img src="Belmont Logo.svg" alt="Belmont Logo" class="logo" />
     <h1>Cotizador Video Branding</h1>
+    <form id="cotizadorForm">
+      <label>Objetivo del video</label>
+      <select id="objetivo" required>
+        <option disabled selected>Selecciona</option>
+        <option value="posicionamiento">Posicionamiento de marca</option>
+        <option value="lanzamiento">Lanzamiento</option>
+        <option value="redes">Redes sociales</option>
+        <option value="institucional">Institucional</option>
+        <option value="otro">Otro</option>
+      </select>
 
-    <form id="formularioCotizacion">
-      <div class="form-group">
-        <label>Objetivo del video</label>
-        <select id="objetivo" required>
-          <option disabled selected>Selecciona</option>
-          <option value="posicionamiento">Posicionamiento</option>
-          <option value="lanzamiento">Lanzamiento</option>
-          <option value="redes">Redes sociales</option>
-          <option value="institucional">Institucional</option>
-          <option value="otro">Otro</option>
-        </select>
-      </div>
+      <label>Plataforma principal donde se publicará</label>
+      <select id="plataforma" required>
+        <option disabled selected>Selecciona</option>
+        <option value="instagram">Instagram</option>
+        <option value="tiktok">TikTok</option>
+        <option value="youtube">YouTube</option>
+        <option value="web">Sitio web</option>
+        <option value="otro">Otro</option>
+      </select>
 
-      <div class="form-group">
-        <label>Duración estimada (segundos)</label>
-        <input type="number" id="duracion" min="1" value="15" required />
-      </div>
+      <label>Duración estimada (segundos)</label>
+      <input type="number" id="duracion" min="5" max="60" value="15" required />
 
-      <div class="form-group">
-        <label>Tipo de grabación</label>
-        <select id="grabacion" required>
-          <option disabled selected>Selecciona</option>
-          <option value="basico">Básico</option>
-          <option value="locacion">Locación</option>
-          <option value="talento">Talento</option>
-        </select>
-      </div>
+      <label>Estilo visual</label>
+      <select id="estilo" required>
+        <option disabled selected>Selecciona</option>
+        <option value="2d">2D minimalista</option>
+        <option value="3d">3D</option>
+        <option value="cinematografico">Cinematográfico</option>
+        <option value="dinamico">Dinámico / redes</option>
+        <option value="corporativo">Corporativo</option>
+      </select>
 
-      <div class="form-group">
-        <label>¿Requiere animación o motion graphics?</label>
-        <select id="animacion" required>
-          <option disabled selected>Selecciona</option>
-          <option value="si">Sí</option>
-          <option value="no">No</option>
-        </select>
-      </div>
+      <label>Tipo de grabación</label>
+      <select id="grabacion" required>
+        <option disabled selected>Selecciona</option>
+        <option value="basico">Básico</option>
+        <option value="locacion">Con locación</option>
+        <option value="talento">Con talento / actores</option>
+      </select>
 
-      <div class="form-group">
-        <label>¿Necesitas apoyo creativo?</label>
-        <select id="guion" required>
-          <option disabled selected>Selecciona</option>
-          <option value="guion">Ya tengo guion</option>
-          <option value="idea">Solo tengo la idea</option>
-          <option value="apoyo">Necesito apoyo completo</option>
-        </select>
-      </div>
+      <label>¿Requiere animación o motion graphics?</label>
+      <select id="animacion" required>
+        <option disabled selected>Selecciona</option>
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+      </select>
+
+      <label>¿Tienes guion o necesitas apoyo creativo?</label>
+      <select id="guion" required>
+        <option disabled selected>Selecciona</option>
+        <option value="guion">Ya tengo guion</option>
+        <option value="idea">Tengo una idea base</option>
+        <option value="apoyo">Necesito apoyo completo</option>
+      </select>
+
+      <label>¿Tienes locaciones definidas?</label>
+      <select id="locaciones" required>
+        <option disabled selected>Selecciona</option>
+        <option value="si">Sí</option>
+        <option value="no">No, necesito que me propongan</option>
+      </select>
+
+      <label>¿Tienes alguna referencia visual?</label>
+      <select id="referencia" required>
+        <option disabled selected>Selecciona</option>
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
+
+      <label>Presupuesto estimado</label>
+      <select id="presupuesto" required>
+        <option disabled selected>Selecciona</option>
+        <option value="3000">$3,000 MXN</option>
+        <option value="5000">$5,000 MXN</option>
+        <option value="7500">$7,500 MXN</option>
+        <option value="10000">$10,000 MXN</option>
+        <option value="15000">$15,000 MXN</option>
+      </select>
+
+      <label>Fecha ideal de entrega</label>
+      <select id="entrega" required>
+        <option disabled selected>Selecciona</option>
+        <option value="7">Menos de 1 semana</option>
+        <option value="14">1 a 2 semanas</option>
+        <option value="30">2 a 4 semanas</option>
+        <option value="mas">Más de 1 mes</option>
+      </select>
+
+      <label>¿Qué materiales ya tienes?</label>
+      <select id="materiales" required>
+        <option disabled selected>Selecciona</option>
+        <option value="logo">Logotipo</option>
+        <option value="branding">Manual de marca</option>
+        <option value="guion">Guion</option>
+        <option value="musica">Música</option>
+        <option value="voz">Voz en off</option>
+        <option value="ninguno">Ninguno</option>
+      </select>
 
       <button type="button" onclick="calcularPresupuesto()">Calcular presupuesto</button>
+      <div id="resultado"></div>
     </form>
-
-    <div id="resultado"></div>
   </div>
 
   <script>
@@ -72,17 +124,25 @@
       const tipo = document.getElementById('grabacion').value;
       const animacion = document.getElementById('animacion').value;
       const guion = document.getElementById('guion').value;
+      const estilo = document.getElementById('estilo').value;
+      const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
 
       let extra = 0;
       if (duracion > 15) extra += (duracion - 15) * 100;
-      if (tipo === 'locacion') extra += 500;
-      if (tipo === 'talento') extra += 1000;
+      if (tipo === 'locacion') extra += 800;
+      if (tipo === 'talento') extra += 1500;
       if (animacion === 'si') extra += 1000;
       if (guion === 'apoyo') extra += 1000;
+      if (estilo === '3d') extra += 2500;
 
       const total = base + extra;
-      document.getElementById('resultado').textContent =
-        `Presupuesto estimado: $${total.toLocaleString('es-MX')} MXN`;
+      const resultado = document.getElementById('resultado');
+
+      if (total > presupuestoMax) {
+        resultado.innerHTML = `<p style='color:#ff6666'>El estimado es de <strong>$${total.toLocaleString('es-MX')}</strong> MXN, lo cual excede tu presupuesto. Considera ajustar opciones.</p>`;
+      } else {
+        resultado.innerHTML = `<p style='color:#66ffcc'>Tu presupuesto es viable. Estimación: <strong>$${total.toLocaleString('es-MX')}</strong> MXN.</p>`;
+      }
     }
   </script>
 </body>
