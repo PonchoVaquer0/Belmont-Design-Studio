@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Belmont Design Studio</title>
+  <title>Cotizador Video Branding - Belmont</title>
   <link href="https://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <img src="Belmont Logo.svg" alt="Belmont Logo" class="logo" />
-    <h1>Cotizador De Videos</h1>
+    <h1>Cotizador Video Branding</h1>
 
     <form id="cotizadorForm">
       <label>¿Qué tipo de video necesitas?</label>
@@ -33,7 +33,7 @@
       </select>
 
       <label>Duración estimada (segundos)</label>
-      <input type="number" id="duracion" min="5" max="60" value="15" required />
+      <input type="number" id="duracion" min="5" max="600" value="15" required />
 
       <label>Estilo visual</label>
       <select id="estilo" required>
@@ -53,8 +53,6 @@
         <option value="apoyo">Necesito apoyo completo</option>
       </select>
 
-      <!-- Eliminada referencia visual -->
-
       <label>Presupuesto estimado</label>
       <select id="presupuesto" required>
         <option disabled selected>Selecciona</option>
@@ -62,6 +60,7 @@
         <option value="5000">$5,000 MXN</option>
         <option value="7500">$7,500 MXN</option>
         <option value="10000">$10,000 MXN</option>
+        <option value="13000">$13,000 MXN</option>
         <option value="15000">$15,000 MXN</option>
       </select>
 
@@ -74,12 +73,10 @@
         <option value="mas">Más de 1 mes</option>
       </select>
 
-      <label>¿Qué materiales ya tienes?</label>
-      <select id="materiales" required>
-        <option disabled selected>Selecciona</option>
-        <option value="logo">Logotipo</option>
+      <label>¿Qué materiales ya tienes? (selección múltiple)</label>
+      <select id="materiales" multiple size="6">
+        <option value="logotipo">Logotipo</option>
         <option value="branding">Manual de marca</option>
-        <option value="guion">Guion</option>
         <option value="musica">Música</option>
         <option value="voz">Voz en off</option>
         <option value="ninguno">Ninguno</option>
@@ -101,7 +98,9 @@
       const plataforma = document.getElementById('plataforma').value;
       const presupuestoMax = parseInt(document.getElementById('presupuesto').value);
       const entrega = document.getElementById('entrega').value;
-      const materiales = document.getElementById('materiales').value;
+
+      const materialesSelect = document.getElementById('materiales');
+      const materiales = Array.from(materialesSelect.selectedOptions).map(opt => opt.value).join(', ');
 
       let extra = 0;
 
@@ -130,12 +129,17 @@
           break;
       }
 
-      // Urgencia por entrega menor a 1 semana
       if(entrega === '7') {
-        extra += 2000; // cargo extra por urgencia
+        extra += 2000; // Urgencia
       }
 
-      const total = base + extra;
+      let total = base + extra;
+
+      // 🔒 Limitar si es menor a 3 minutos
+      if (duracion <= 120 && total > 13000) {
+        total = 13000;
+      }
+
       const resultado = document.getElementById('resultado');
       let htmlResultado = '';
 
@@ -165,7 +169,7 @@
         `- Presupuesto estimado: $${presupuesto.toLocaleString('es-MX')} MXN\n` +
         `- Fecha ideal de entrega: ${entrega}\n` +
         `- Materiales disponibles: ${materiales}\n` +
-        `- Estimación de costo final: $${total.toLocaleString('es-MX')} MXN\n` +
+        `- Estimación final: $${total.toLocaleString('es-MX')} MXN\n` +
         `Por favor, contáctame para iniciar el proyecto.`;
 
       const url = `https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`;
