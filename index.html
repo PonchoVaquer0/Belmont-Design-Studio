@@ -3,19 +3,90 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cotizador de Video Branding + Formulario</title>
+<title>Cotizador de Video de Branding - Belmont Studio Design</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 20px; max-width: 700px; }
-  h2 { margin-bottom: 10px; }
-  label { display: block; margin-top: 15px; font-weight: bold; }
-  select, input[type="number"], input[type="text"], textarea {
-    width: 100%; padding: 7px; margin-top: 5px; box-sizing: border-box;
+  /* Fondo negro con degradado y transparencias */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    max-width: 700px;
+    background: linear-gradient(135deg, #000000cc 0%, #1a1a1acc 100%);
+    color: #ddd;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px #000;
   }
-  button { margin-top: 20px; padding: 10px 20px; font-size: 1em; cursor: pointer; }
-  #resultado { margin-top: 25px; font-weight: bold; font-size: 1.3em; color: #004080; }
+
+  /* Logo */
+  #logo {
+    display: block;
+    margin: 0 auto 25px auto;
+    max-width: 180px;
+    filter: drop-shadow(0 0 5px #0af);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #00aaff;
+    text-shadow: 0 0 8px #00aaff;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #bbb;
+  }
+
+  select, input[type="number"], input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1.5px solid #444;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #eee;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+  }
+  select:focus, input[type="number"]:focus, input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: #00aaff;
+    box-shadow: 0 0 8px #00aaff;
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background: linear-gradient(90deg, #0077cc, #00aaff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 0 10px #00aaff;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: linear-gradient(90deg, #005fa3, #0088cc);
+  }
+
+  #resultado {
+    margin-top: 30px;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #00ddff;
+    text-align: center;
+    text-shadow: 0 0 10px #00ddff;
+  }
 </style>
 </head>
 <body>
+
+<img id="logo" src="Belmont Logo.svg" alt="Belmont Logo" />
 
 <h2>Cuestionario para Cotización de Video de Branding</h2>
 
